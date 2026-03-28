@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="SmartFocus — A Priority Engine with Focus Timer, AI Insights, and Time Analytics." />
+    <title>SmartFocus — Priority Engine</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;600&family=DM+Serif+Display&family=JetBrains+Mono:wght@700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+
+    <!-- Ambient background orbs -->
+    <div class="bg-canvas" aria-hidden="true">
+      <div class="orb orb--teal"></div>
+      <div class="orb orb--amber"></div>
+      <div class="orb orb--rose"></div>
+    </div>
+
+    <!-- HEADER -->
+    <header class="site-header">
+      <div class="header__brand">
+        <span class="brand-icon" aria-hidden="true">◈</span>
+        <span class="brand-name">SmartFocus</span>
+      </div>
+      <div class="header__meta">
+        <time id="js-date" class="header__date"></time>
+        <!-- Sound toggle -->
+        <button id="js-sound-btn" class="btn btn--ghost" aria-pressed="true" aria-label="Toggle completion sound">
+          <span id="js-sound-icon">🔔</span> Sound
+        </button>
+        <button id="js-focus-mode-btn" class="btn btn--ghost" aria-pressed="false" aria-label="Toggle Focus Mode">
+          <span class="focus-dot" aria-hidden="true"></span>
+          Focus Mode
+        </button>
+      </div>
+    </header>
+
+    <main class="main-content">
+
+      <!-- STATS -->
+      <section class="stats-grid" aria-label="Task Statistics">
+        <article class="stat-card">
+          <span class="stat-card__label">Total Tasks</span>
+          <span class="stat-card__value" id="js-stat-total">0</span>
+          <span class="stat-card__sub">in your engine</span>
+        </article>
+        <article class="stat-card">
+          <span class="stat-card__label">Completed</span>
+          <span class="stat-card__value stat-card__value--teal" id="js-stat-done">0</span>
+          <span class="stat-card__sub">tasks finished</span>
+        </article>
+        <article class="stat-card">
+          <span class="stat-card__label">Avg. Focus Score</span>
+          <span class="stat-card__value stat-card__value--amber" id="js-stat-avg">—</span>
+          <span class="stat-card__sub">priority index</span>
+        </article>
+      </section>
+
+      <!-- TIMER + AI INSIGHT ROW -->
+      <div class="timer-insight-row">
+
+        <!-- FOCUS TIMER -->
+        <section class="timer-panel" aria-label="Focus Timer">
+          <h2 class="panel-title"><span aria-hidden="true">⏱</span> Focus Timer</h2>
+
+          <!-- Active task indicator -->
+          <div class="timer-task-label" id="js-timer-task-label">
+            <span class="timer-task-label__text" id="js-timer-task-name">No task selected</span>
+          </div>
+
+          <!-- Clock display -->
+          <div class="timer-display" aria-live="polite" aria-label="Timer">
+            <span class="timer-digits" id="js-timer-display">00:00:00</span>
+          </div>
+
+          <!-- Timer controls -->
+          <div class="timer-controls">
+            <button id="js-timer-start"  class="btn btn--primary"  aria-label="Start timer">Start</button>
+            <button id="js-timer-pause"  class="btn btn--ghost"    aria-label="Pause timer"  disabled>Pause</button>
+            <button id="js-timer-stop"   class="btn btn--danger"   aria-label="Stop timer"   disabled>Stop</button>
+          </div>
+
+          <p class="timer-hint" id="js-timer-hint">Click a task below to select it, then press Start.</p>
+        </section>
+
+        <!-- AI INSIGHT CARD -->
+        <aside class="insight-card" id="js-insight-card" aria-live="polite" aria-label="AI Insight">
+          <div class="insight-card__header">
+            <span class="insight-icon" aria-hidden="true">🧠</span>
+            <span class="insight-card__title">AI Insight</span>
+          </div>
+          <p class="insight-card__message" id="js-insight-message">
+            Select a task and start the timer to receive insights.
+          </p>
+          <span class="insight-card__badge" id="js-insight-badge"></span>
+        </aside>
+
+      </div>
+
+      <!-- TASK INPUT -->
+      <section class="input-panel" aria-label="Add new task">
+        <h2 class="panel-title"><span aria-hidden="true">+</span> New Task</h2>
+        <div class="task-form" id="js-task-form">
+          <div class="form-group form-group--full">
+            <label class="form-label" for="task-name">Task Name</label>
+            <input type="text" id="task-name" class="form-input" placeholder="What needs to get done?" maxlength="120" autocomplete="off" aria-required="true" />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="task-impact">
+              Impact <abbr title="How much does this move the needle? (1–5)" class="form-hint">?</abbr>
+            </label>
+            <div class="slider-wrapper">
+              <input type="range" id="task-impact" class="form-slider" min="1" max="5" value="3" />
+              <output class="slider-output" id="impact-output" for="task-impact">3</output>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="task-urgency">
+              Urgency <abbr title="How time-sensitive is this? (1–5)" class="form-hint">?</abbr>
+            </label>
+            <div class="slider-wrapper">
+              <input type="range" id="task-urgency" class="form-slider" min="1" max="5" value="3" />
+              <output class="slider-output" id="urgency-output" for="task-urgency">3</output>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="task-category">Category</label>
+            <select id="task-category" class="form-select">
+              <option value="Deep Work">🧠 Deep Work</option>
+              <option value="Development">💻 Development</option>
+              <option value="Communication">💬 Communication</option>
+              <option value="Admin">📋 Admin</option>
+              <option value="Learning">📚 Learning</option>
+              <option value="Health">❤️ Health</option>
+            </select>
+          </div>
+          <div class="form-group form-group--action">
+            <div class="score-preview">
+              <span class="score-preview__label">Focus Score</span>
+              <span class="score-preview__value" id="js-score-preview">76</span>
+            </div>
+            <button type="button" id="js-add-btn" class="btn btn--primary">Add Task</button>
+          </div>
+        </div>
+        <p class="form-error" id="js-form-error" role="alert" hidden>Please enter a task name before adding.</p>
+      </section>
+
+      <!-- PRIORITY LIST -->
+      <section class="task-section" aria-label="Priority task list">
+        <div class="task-section__header">
+          <h2 class="panel-title">Priority Engine</h2>
+          <div class="filter-group" role="group" aria-label="Filter tasks">
+            <button class="filter-btn filter-btn--active" data-filter="all"      aria-pressed="true">All</button>
+            <button class="filter-btn"                    data-filter="critical" aria-pressed="false">🔴 Critical</button>
+            <button class="filter-btn"                    data-filter="high"     aria-pressed="false">🟡 High</button>
+            <button class="filter-btn"                    data-filter="medium"   aria-pressed="false">🟢 Medium</button>
+          </div>
+        </div>
+        <ul class="task-list" id="js-task-list" aria-label="Prioritized task list" aria-live="polite"></ul>
+        <div class="empty-state" id="js-empty-state" hidden>
+          <span class="empty-state__icon" aria-hidden="true">◈</span>
+          <p class="empty-state__title">Your engine is clear.</p>
+          <p class="empty-state__sub">Add a task above to calculate your first Focus Score.</p>
+        </div>
+      </section>
+
+      <!-- TIME ANALYTICS — PIE CHART -->
+      <section class="chart-section" id="js-chart-section" aria-label="Time analytics">
+        <h2 class="panel-title"><span aria-hidden="true">◑</span> Time Analytics</h2>
+        <div class="chart-container">
+          <!-- SVG pie chart injected by JS -->
+          <svg id="js-pie-chart" class="pie-chart" viewBox="0 0 200 200" aria-hidden="true"></svg>
+          <div class="chart-legend" id="js-chart-legend"></div>
+        </div>
+        <p class="chart-empty" id="js-chart-empty">Start timing tasks to see your time distribution here.</p>
+      </section>
+
+    </main>
+
+    <!-- Toast -->
+    <div class="toast" id="js-toast" role="status" aria-live="polite" hidden></div>
+
+    <script src="main.js"></script>
+  </body>
+</html>

@@ -7,13 +7,13 @@ const CACHE_NAME = 'smartfocus-v2';
 
 // Every file the app needs to run — cached on first visit
 const ASSETS = [
-  '/',
-  '/index.html',
-  '/css/style.css',
-  '/js/script.js',
-  '/manifest.json',
-  '/icons/icon-192.png',
-  '/icons/icon-512.png',
+  './',
+  './index.html',
+  './css/style.css',
+  './js/script.js',
+  './manifest.json',
+  './icons/icon-192.png',
+  './icons/icon-512.png',
   'https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;600&family=DM+Serif+Display&family=JetBrains+Mono:wght@700&display=swap',
 ];
 

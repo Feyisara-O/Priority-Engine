@@ -3,17 +3,19 @@
    Enables full offline support via the Cache API
 ════════════════════════════════════ */
 
-const CACHE_NAME = 'smartfocus-v2';
+const CACHE_NAME = 'smartfocus-v3';
+
+const BASE = '/Priority-Engine';
 
 // Every file the app needs to run — cached on first visit
 const ASSETS = [
-  './',
-  './index.html',
-  './css/style.css',
-  './js/script.js',
-  './manifest.json',
-  './icons/icon-192.png',
-  './icons/icon-512.png',
+  `${BASE}/`,
+  `${BASE}/index.html`,
+  `${BASE}/css/style.css`,
+  `${BASE}/js/script.js`,
+  `${BASE}/manifest.json`,
+  `${BASE}/icons/icon-192.png`,
+  `${BASE}/icons/icon-512.png`,
   'https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;600&family=DM+Serif+Display&family=JetBrains+Mono:wght@700&display=swap',
 ];
 

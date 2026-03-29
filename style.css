@@ -19,8 +19,8 @@
   --color-rose:       #FF5470;
   --color-rose-dim:   rgba(255,84,112,0.15);
 
-  --color-text-primary:   #F0F4FF;
-  --color-text-secondary: #8892AA;
+  --color-text-primary:   #ECEFFF;
+  --color-text-secondary: #9BA5BF;
   --color-text-muted:     #4A5568;
 
   --glow-teal:  0 0 24px rgba(0,229,195,0.30);
@@ -77,16 +77,16 @@ input, select, output { font-family: inherit; }
 
 /* ── 3. AMBIENT ORBS ── */
 .bg-canvas { position: fixed; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; }
-.orb { position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.18; will-change: transform; }
-.orb--teal  { width: 600px; height: 600px; background: var(--color-teal);  top: -200px; left: -150px; animation: drift-teal  18s ease-in-out infinite alternate; }
-.orb--amber { width: 500px; height: 500px; background: var(--color-amber); bottom: -100px; right: -100px; animation: drift-amber 22s ease-in-out infinite alternate; }
-.orb--rose  { width: 400px; height: 400px; background: var(--color-rose);  top: 40%; left: 55%; animation: drift-rose  26s ease-in-out infinite alternate; }
+.orb { position: absolute; border-radius: 50%; filter: blur(120px); opacity: 0.07; will-change: transform; }
+.orb--teal  { width: 700px; height: 700px; background: var(--color-teal);  top: -300px; left: -200px; animation: drift-teal  18s ease-in-out infinite alternate; }
+.orb--amber { width: 600px; height: 600px; background: var(--color-amber); bottom: -200px; right: -150px; animation: drift-amber 22s ease-in-out infinite alternate; }
+.orb--rose  { width: 500px; height: 500px; background: var(--color-rose);  top: 40%; left: 55%; animation: drift-rose  26s ease-in-out infinite alternate; }
 
 /* ── 4. HEADER ── */
 .site-header {
   display: flex; align-items: center; justify-content: space-between;
   padding: var(--space-sm) var(--space-md);
-  background: rgba(5,8,16,0.70);
+  background: rgba(5,8,16,0.90);
   backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--color-glass-border);
   position: sticky; top: 0; z-index: 100;
@@ -105,12 +105,14 @@ input, select, output { font-family: inherit; }
 /* ── 6. STAT CARDS ── */
 .stats-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: var(--space-sm); }
 .stat-card {
-  background: var(--color-glass-bg);
-  backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
-  border: 1px solid var(--color-glass-border);
+  background: rgba(10, 15, 28, 0.75);
+  backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-top: 1px solid rgba(255,255,255,0.18);
   border-radius: var(--radius-md);
   padding: var(--space-md) var(--space-sm);
   display: flex; flex-direction: column; gap: var(--space-xs);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.06);
   transition: transform var(--transition-base), border-color var(--transition-base);
   animation: slide-up 0.5s var(--transition-slow) both;
   min-width: 0;
@@ -130,11 +132,13 @@ input, select, output { font-family: inherit; }
 .timer-panel,
 .insight-card,
 .chart-section {
-  background: var(--color-glass-bg);
-  backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
-  border: 1px solid var(--color-glass-border);
+  background: rgba(10, 15, 28, 0.75);
+  backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-top: 1px solid rgba(255,255,255,0.18);
   border-radius: var(--radius-lg);
   padding: var(--space-md);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.06);
   animation: slide-up 0.5s var(--transition-slow) 240ms both;
 }
 .panel-title {
@@ -298,7 +302,7 @@ input, select, output { font-family: inherit; }
   grid-template-columns: 4px 44px 1fr auto;
   align-items: center;
   gap: var(--space-xs) var(--space-sm);
-  background: rgba(255,255,255,0.03);
+  background: rgba(12, 17, 32, 0.80);
   border: 1px solid var(--color-glass-border);
   border-radius: var(--radius-md);
   padding: var(--space-xs) var(--space-sm);

@@ -4,7 +4,7 @@
 
 ![Priority Engine](./icons/icon-512.png)
 
-**Live Demo → [feyisara-o.github.io/Priority-Engine](https://feyisara-o.github.io/Priority-Engine/)**
+**Live Demo → [feyisara-o.github.io/priority-engine](https://feyisara-o.github.io/priority-engine/)**
 
 ---
 

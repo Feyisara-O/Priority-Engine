@@ -5,7 +5,7 @@
 
 const CACHE_NAME = 'smartfocus-v3';
 
-const BASE = '/Priority-Engine';
+const BASE = '/priority-engine';
 
 // Every file the app needs to run — cached on first visit
 const ASSETS = [
